@@ -824,7 +824,7 @@ impl CrowdfundVaultContract {
         }
 
         let contract_address = env.current_contract_address();
-        let user_balance = token::balance(env, &project.token_address, &user);
+        let user_balance = token::balance(env, &project.token_address, user);
 
         let balance_key = DataKey::ProjectBalance(project_id, project.token_address.clone());
         let current_balance: i128 = env.storage().persistent().get(&balance_key).unwrap_or(0);
@@ -901,7 +901,7 @@ impl CrowdfundVaultContract {
             token::transfer(
                 env,
                 &project.token_address,
-                &user,
+                user,
                 &contract_address,
                 &amount,
             );
